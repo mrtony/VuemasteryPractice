@@ -26,14 +26,28 @@
         :disabled="!inStock"
         :class="{disabledButton: !inStock}"
         >Add To Cart</button>
-
+      </div>
+      <div>
+        <ul>
+          <li v-for="(review, index) in reviews" :key="index">
+            Name:{{review.name}}, Review:{{review.review}}, Rating: {{review.rating}}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <product-review @add-review="addReview"></product-review>
       </div>
     </div>
 </template>
 
 <script>
+import ProductReview from './ProductReview';
+
 export default {
   name: 'product',
+  components: {
+    ProductReview
+  },
   props: {
       premium: {
           type: Boolean,
@@ -45,6 +59,7 @@ export default {
     product: 'Socks',
     selectedVariant: 0,
     inventory: 0,
+    reviews: [],
     details: ['80% cotton', '20% polyester', 'Gender-neutral'],
     variants: [
       {
@@ -67,6 +82,9 @@ export default {
     },
     updateProductImage(index) {
       this.selectedVariant = index;
+    },
+    addReview(reviewData) {
+      this.reviews.push(reviewData);
     }
   },
   computed: {

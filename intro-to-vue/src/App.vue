@@ -4,8 +4,9 @@
     <product :premium="premium" @add-to-cart="updateCart"></product>
         <div class="cart">
           <p>Cart: {{cart.length}}</p>
-        </div>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -14,7 +15,7 @@ import Product from './Product';
 export default {
   name: 'app',
   components: {
-    Product
+    Product,
   },
   data: function() {
     return {
