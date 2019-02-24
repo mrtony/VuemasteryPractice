@@ -3,6 +3,9 @@
     <h1>Event Listing</h1>
     <NavBar />
     <EventCard />
+    <BaseIcon name="users" />
+    <BaseInput />
+    <BaseButton />
   </div>
 </template>
 
