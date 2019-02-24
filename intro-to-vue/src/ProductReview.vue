@@ -50,7 +50,7 @@ export default {
                 return;
             }
 
-            this.$emit('add-review', {name: this.name, review: this.review, rating: this.rating});
+            this.$bus.$emit('add-review', {name: this.name, review: this.review, rating: this.rating});
             this.name= null;
             this.review = null;
             this.rating = null;

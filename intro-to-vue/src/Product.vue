@@ -28,31 +28,29 @@
         >Add To Cart</button>
       </div>
       <div>
-        <ul>
-          <li v-for="(review, index) in reviews" :key="index">
-            Name:{{review.name}}, Review:{{review.review}}, Rating: {{review.rating}}
-          </li>
-        </ul>
-      </div>
-      <div>
-        <product-review @add-review="addReview"></product-review>
+        <review-tabs :reviews="reviews"></review-tabs>
       </div>
     </div>
 </template>
 
 <script>
-import ProductReview from './ProductReview';
+import ReviewTabs from './ReviewTabs';
 
 export default {
   name: 'product',
   components: {
-    ProductReview
+    ReviewTabs
   },
   props: {
       premium: {
           type: Boolean,
           required: true
       }
+  },
+  mounted() {
+    this.$bus.$on('add-review', newReview => {
+      this.reviews.push(newReview);
+    })
   },
   data: () => ({
     brand: 'VueMastery',
