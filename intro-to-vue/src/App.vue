@@ -1,15 +1,24 @@
 <template>
-  <h1>{{gretting}} - Intro To Vue course!</h1>
+  <div id="app">
+    <div class="nav-bar"></div>
+    <div class="product">
+      <div class="product-image">
+        <img :src="image" alt="socks image">
+      </div>
+      <div class="product-info">
+        <h1>{{product}}</h1>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  data: () => {
-    return {
-      gretting: 'Hello'
-    }
-  }
+  data: () => ({
+    product: 'Socks',
+    image: require("./assets/vmSocks-green-onWhite.jpg")
+  })
 }
 </script>
 
