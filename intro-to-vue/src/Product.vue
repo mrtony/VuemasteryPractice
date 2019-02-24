@@ -26,9 +26,7 @@
         :disabled="!inStock"
         :class="{disabledButton: !inStock}"
         >Add To Cart</button>
-        <div class="cart">
-          <p>Cart: {{cart}}</p>
-        </div>
+
       </div>
     </div>
 </template>
@@ -62,11 +60,10 @@ export default {
         variantQuantity: 0
       },
     ],
-    cart: 0
   }),
   methods: {
     addToCart() {
-      this.cart += 1;
+      this.$emit('add-to-cart', this.variants[this.selectedVariant]);
     },
     updateProductImage(index) {
       this.selectedVariant = index;

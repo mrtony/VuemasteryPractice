@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div class="nav-bar"></div>
-    <product :premium="premium"></product>
-    <product-global-component :premium=false></product-global-component>
+    <product :premium="premium" @add-to-cart="updateCart"></product>
+        <div class="cart">
+          <p>Cart: {{cart.length}}</p>
+        </div>
   </div>
 </template>
 
@@ -16,8 +18,14 @@ export default {
   },
   data: function() {
     return {
-    premium: true
-  }
+      premium: true,
+      cart: []
+    }
+  },
+  methods: {
+    updateCart(variant) {
+      this.cart.push(variant);
+    }
   }
 }
 </script>
