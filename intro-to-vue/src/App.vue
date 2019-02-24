@@ -19,8 +19,12 @@
 
         <div>
           <p v-for="variant in variants" :key="variant.variantId">
-            {{variant.variantColor}}
+            <span @mouseover="updateProductImage(variant.variantImage)">{{variant.variantColor}}</span>
           </p>
+        </div>
+        <button @click="addToCart">Add To Cart</button>
+        <div class="cart">
+          <p>Cart: {{cart}}</p>
         </div>
       </div>
     </div>
@@ -37,10 +41,27 @@ export default {
     inventory: 0,
     details: ['80% cotton', '20% polyester', 'Gender-neutral'],
     variants: [
-      {variantId: 234, variantColor: 'green'},
-      {variantId: 235, variantColor: 'blue'},
-    ]
-  })
+      {
+        variantId: 234, 
+        variantColor: 'green', 
+        variantImage: require("./assets/vmSocks-green-onWhite.jpg")
+      },
+      {
+        variantId: 235, 
+        variantColor: 'blue', 
+        variantImage: require("./assets/vmSocks-blue-onWhite.jpg")
+      },
+    ],
+    cart: 0
+  }),
+  methods: {
+    addToCart() {
+      this.cart += 1;
+    },
+    updateProductImage(variantImage) {
+      this.image = variantImage;
+    }
+  }
 }
 </script>
 
