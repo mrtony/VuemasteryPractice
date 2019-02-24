@@ -17,12 +17,17 @@
           </li>
         </ul>
 
-        <div>
-          <p v-for="variant in variants" :key="variant.variantId">
-            <span @mouseover="updateProductImage(variant.variantImage)">{{variant.variantColor}}</span>
-          </p>
+        <div 
+        v-for="variant in variants" 
+        :key="variant.variantId"
+        class="color-box"
+        :style="{'background-color': variant.variantColor}"
+        @mouseover="updateProductImage(variant.variantImage)">
         </div>
-        <button @click="addToCart">Add To Cart</button>
+        <button @click="addToCart" 
+        :disabled="!inStock"
+        :class="{disabledButton: !inStock}"
+        >Add To Cart</button>
         <div class="cart">
           <p>Cart: {{cart}}</p>
         </div>
@@ -38,6 +43,7 @@ export default {
   data: () => ({
     product: 'Socks',
     image: require("./assets/vmSocks-green-onWhite.jpg"),
+    inStock: true,
     inventory: 0,
     details: ['80% cotton', '20% polyester', 'Gender-neutral'],
     variants: [
